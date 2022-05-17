@@ -1,0 +1,16 @@
+<h2>Find a flight</h2>
+
+<%= form_with model: Flight, method: :get do |form| %>
+
+  <strong><%= form.label :departure_airport, "From" %></strong>
+  <%= select_tag(:departure_airport, options_for_select(Airport.codes)) %>
+
+  <strong><%= form.label :arrival_airport, "To" %></strong>
+  <%= select_tag(:arrival_airport, options_for_select(Airport.codes)) %> <br>
+
+  <strong><%= form.label :num_of_passengers, "Number of Passengers" %></strong>
+  <%= select_tag(:num_of_passengers, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4]])) %> <br>
+
+  <strong><%= form.label :departure_date, "Departure date" %></strong>
+  <%= select_tag(:departure_date, options_for_select(@departure_select))  %>
+<% end %>
