@@ -1,2 +1,36 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<h2>Let's book your flight from
+  <%= @booking.flight.departure_airport.code %> to 
+  <%= @booking.flight.arrival_airport.code %> !
+ <div class="booking-flight-info">
+   </h2>
+   <h3>
+    You've selected flight # <%= @booking.flight.id %>
+   </h3>
+   <h3>
+    Departing 
+    <%= @booking.flight.format_date(@booking.flight.depart_datetime)%> at
+    <%= @booking.flight.format_time(@booking.flight.depart_datetime) %>
+   </h3>
+   <h3>
+    Duration of flight: <%= @booking.flight.duration_in_minutes %> minutes
+   </h3>
+ </div>
+
+ <%= form_with model: @booking do |form| %>
+  Passengers:
+  <ul>
+    <%= form.fields_for :passengers do |passenger_form| %>
+      
+        <li>
+          <%= passenger_form.label :name %>
+          <%= passenger_form.text_field :name, required: true %>
+
+          <%= passenger_form.label :email %>
+          <%= passenger_form.text_field :email, required: true %>
+        </li>
+        <br>
+     
+      <%= form.submit "Next" %>
+    <% end %>
+  </ul>
+ <% end %>
