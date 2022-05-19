@@ -1,10 +1,9 @@
-<% flight_options.each do |f| %>
-  <ul>
-    <li>
-      Flight from <%= f.departure_airport.code %>
-      to <%= f.arrival_airport.code %> <br>
-      Departs <%= f.format_date(f.depart_datetime) %>
-      at <%= f.format_time(f.depart_datetime) %>
-    </li>
-  </ul>
+<%= form_with model: Booking, method: :get do |form| %>
+  <% flight_options.each do |f| %>
+    <%= form.radio_button :flight_id, f.id %>
+    <%= form.label :flight_id, "#{f.departure_airport.code} to #{f.arrival_airport.code} departing #{f.format_date(f.depart_datetime)} at #{f.format_time(f.depart_datetime)}" %>
+    <%= form.hidden_field :num_tickets, value: params[:num_ticekts] %>
+  <% end %>
+  <br> <br>
+  <%= form.submit "Book Flight" %>
 <% end %>

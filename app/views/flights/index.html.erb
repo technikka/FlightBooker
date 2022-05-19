@@ -15,8 +15,11 @@
   <%= select_tag(:departure_date, options_for_select(@departure_select, selected: params[:departure_date]))  %> <br>
 
   <strong><%= form.label :all_dates, "Include all dates?" %></strong> 
-  <%= form.check_box :all_dates, checked: params[:flight][:all_dates] == '1' %> <br>
-
+  <% if params[:flight] %>
+    <%= form.check_box :all_dates, checked: params[:flight][:all_dates] == '1'  %> <br>
+  <% else %>
+    <%= form.check_box :all_dates %> <br>
+  <% end %>
   <%= form.submit "Search" %>
 <% end %>
 
