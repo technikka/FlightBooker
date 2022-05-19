@@ -1,0 +1,10 @@
+<% flight_options.each do |f| %>
+  <ul>
+    <li>
+      Flight from <%= f.departure_airport.code %>
+      to <%= f.arrival_airport.code %> <br>
+      Departs <%= f.format_date(f.depart_datetime) %>
+      at <%= f.format_time(f.depart_datetime) %>
+    </li>
+  </ul>
+<% end %>

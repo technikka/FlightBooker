@@ -1,11 +1,21 @@
 class FlightsController < ApplicationController
   def index
     @flights = Flight.all
-    # need a nested array for select_tag in view
+    # Provides a nested array for select_tag in view
     @departure_select = uniq_formatted_dates.map { |d| [d, d] }
+    search if params[:commit]
+  end
+
+  def search
+    @flight_options = Flight.search_for_flight(flight_params)
+    render 'index'
   end
 
   private
+
+  def flight_params
+    params.permit(:departure_code, :arrival_code, :departure_date, :num_tickets, :commit, flight: [:all_dates])
+  end
 
   def uniq_formatted_dates
     dates = []

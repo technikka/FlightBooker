@@ -2,15 +2,27 @@
 
 <%= form_with model: Flight, method: :get do |form| %>
 
-  <strong><%= form.label :departure_airport, "From" %></strong>
-  <%= select_tag(:departure_airport, options_for_select(Airport.codes)) %>
+  <strong><%= form.label :departure_code, "From" %></strong>
+  <%= select_tag(:departure_code, options_for_select(Airport.codes, selected: params[:departure_code])) %>
 
-  <strong><%= form.label :arrival_airport, "To" %></strong>
-  <%= select_tag(:arrival_airport, options_for_select(Airport.codes)) %> <br>
+  <strong><%= form.label :arrival_code, "To" %></strong>
+  <%= select_tag(:arrival_code, options_for_select(Airport.codes, selected: params[:arrival_code])) %> <br>
 
-  <strong><%= form.label :num_of_passengers, "Number of Passengers" %></strong>
-  <%= select_tag(:num_of_passengers, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4]])) %> <br>
+  <strong><%= form.label :num_tickets, "Number of Passengers" %></strong>
+  <%= select_tag(:num_tickets, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4]], selected: params[:num_tickets])) %> <br>
 
   <strong><%= form.label :departure_date, "Departure date" %></strong>
-  <%= select_tag(:departure_date, options_for_select(@departure_select))  %>
+  <%= select_tag(:departure_date, options_for_select(@departure_select, selected: params[:departure_date]))  %> <br>
+
+  <strong><%= form.label :all_dates, "Include all dates?" %></strong> 
+  <%= form.check_box :all_dates, checked: params[:flight][:all_dates] == '1' %> <br>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @flight_options && @flight_options.empty? %>
+  <h3>No flights found for that search</h3>
+<% elsif @flight_options %>
+  <h3>Flights found</h3>
+  <%= render 'list', flight_options: @flight_options %>
 <% end %>

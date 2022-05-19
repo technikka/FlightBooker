@@ -5,7 +5,8 @@ class Airport < ApplicationRecord
 
   def self.codes
     codes = []
-    Airport.all.each { |a| codes << a.code }
+    @airports = Airport.all
+    @airports.each { |a| codes << a.code }
     codes
   end
 end
