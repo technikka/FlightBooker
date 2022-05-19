@@ -3,10 +3,10 @@ class FlightsController < ApplicationController
     @flights = Flight.all
     # Provides a nested array for select_tag in view
     @departure_select = uniq_formatted_dates.map { |d| [d, d] }
-    search if params[:commit] == 'Search'
+    search_flights if params[:commit] == 'Search'
   end
 
-  def search
+  def search_flights
     @flight_options = Flight.search_for_flight(flight_params)
     render 'index'
   end
