@@ -1,0 +1,22 @@
+<h2>Congrats, you have successfully created a booking!</h2>
+<h3>
+Passengers:
+<ul>
+  <% @booking.passengers.each do |passenger| %>
+    <li>
+      <%= passenger.name %>
+    </li>
+  <% end %> 
+</ul>
+
+are booked to fly from 
+<%= @booking.flight.departure_airport.code %> 
+on 
+<%= @booking.flight.format_date(@booking.flight.depart_datetime) %> 
+at 
+<%= @booking.flight.format_time(@booking.flight.depart_datetime)%>. 
+After
+<%= @booking.flight.duration_in_minutes %> 
+minutes of flight, you will arrive in 
+<%= @booking.flight.arrival_airport.code %>.
+</h3>

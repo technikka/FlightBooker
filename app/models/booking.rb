@@ -3,6 +3,5 @@ class Booking < ApplicationRecord
   has_many :passengers
   accepts_nested_attributes_for :passengers
 
-  validates :passenger_id, presence: true
   validates :flight_id, presence: true
 end

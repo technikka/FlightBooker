@@ -20,7 +20,6 @@
   Passengers:
   <ul>
     <%= form.fields_for :passengers do |passenger_form| %>
-      
         <li>
           <%= passenger_form.label :name %>
           <%= passenger_form.text_field :name, required: true %>
@@ -29,8 +28,8 @@
           <%= passenger_form.text_field :email, required: true %>
         </li>
         <br>
-     
-      <%= form.submit "Next" %>
     <% end %>
+    <%= form.hidden_field :flight_id, value: @booking.flight.id  %>
+    <%= form.submit "Next" %>
   </ul>
  <% end %>
