@@ -15,6 +15,7 @@ class BookingsController < ApplicationController
 
     if @booking.valid?
       @booking.save
+      PassengerMailer.send_confirmation(@booking.passengers.to_a)
       redirect_to @booking
     else
       render :new, status: :unprocessibly_entity

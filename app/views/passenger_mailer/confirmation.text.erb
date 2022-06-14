@@ -1,0 +1,22 @@
+<%= @passenger_name %>,
+
+Thank you for booking a flight with FlightBooker.com!
+
+Details of your flight:
+
+Departure Airport: 
+<%= @booking.flight.departure_airport.code %>
+
+Departure Date: 
+<%= @booking.flight.format_date(@booking.flight.depart_datetime) %>
+
+Departure Time:
+<%= @booking.flight.format_time(@booking.flight.depart_datetime)%>
+
+Flight Duration:
+<%= @booking.flight.duration_in_minutes %> minutes
+
+Arriving:
+<%= @booking.flight.arrival_airport.code %>
+
+Enjoy your flight!

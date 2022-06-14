@@ -1,0 +1,17 @@
+<h3> <%= @passenger_name %>, </h3>
+<h3>Thank you for booking a flight with FlightBooker.com</h3>
+<h3>Details of your flight:</h3>
+<p>
+  <strong>Departure Airport:</strong> <br>
+  <%= @booking.flight.departure_airport.code %> <br>
+  <strong>Departure Date:</strong> <br>
+  <%= @booking.flight.format_date(@booking.flight.depart_datetime) %> 
+  <strong>Departure Time:</strong> <br>
+  <%= @booking.flight.format_time(@booking.flight.depart_datetime)%>
+  <strong>Flight Duration:</strong> <br>
+  <%= @booking.flight.duration_in_minutes %> 
+  <strong>Arriving:</strong>
+  <%= @booking.flight.arrival_airport.code %>
+  <br> <br>
+  Enjoy your flight!
+</p>
