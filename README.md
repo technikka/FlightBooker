@@ -18,6 +18,8 @@ This project serves as a nice example for:
 
 * working with datetime methods
 
+* using Action Mailer to send confirmation emails (and the letter Opener gem to preview email in the browser).
+
 ## Method placement
 
 I'm still working on understanding where certain functionality should be placed, whether in the controller, view or model. In this project I kept the controllers slim and put query functionality in the model. I know that's right. I think my biggest question is about having formatting helpers in the model. It seems the view would be the more appropriate place, but having it in the model keeps the code DRY. 
